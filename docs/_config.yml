@@ -1,3 +1,4 @@
+remote_theme: pages-themes/cayman@v0.2.0
 title: "AB-3"
 theme: minima
 
@@ -13,3 +14,6 @@ github_icon: "images/github-icon.png"
 
 plugins:
   - jemoji
+  - jekyll-remote-theme
+
+show_downloads: ["true"]
