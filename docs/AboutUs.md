@@ -56,4 +56,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/nathanshew.md)]
 
 * Role: Developer
-* Responsibilities: Project Management
+* Responsibilities: Project Management and
