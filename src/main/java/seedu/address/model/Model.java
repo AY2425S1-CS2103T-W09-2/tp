@@ -83,10 +83,21 @@ public interface Model {
     boolean hasLesson(Lesson lesson);
 
     /**
+     * Returns true if a lesson with the same description as description exists in the calendar.
+     */
+    Lesson findLesson(String description);
+
+    /**
      * Adds the given lesson.
      * {@code lesson} must not already exist in the calendar.
      */
     void addLesson(Lesson lesson);
+
+    /**
+     * Removes the given lesson.
+     * {@code lesson} must already exist in the calendar.
+     */
+    void removeLesson(Lesson lesson);
 
 
 

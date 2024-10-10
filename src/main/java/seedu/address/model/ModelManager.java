@@ -132,6 +132,18 @@ public class ModelManager implements Model {
         edulogCalendar.addLesson(lesson);
     }
 
+    @Override
+    public Lesson findLesson(String description) {
+        requireNonNull(description);
+        return edulogCalendar.findLesson(description);
+    }
+
+    @Override
+    public void removeLesson(Lesson lesson) {
+        requireNonNull(lesson);
+        edulogCalendar.removeLesson(lesson);
+    }
+
     //=========== Filtered Student List Accessors =============================================================
 
     /**

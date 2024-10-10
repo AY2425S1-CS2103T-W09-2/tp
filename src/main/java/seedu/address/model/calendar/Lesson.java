@@ -93,6 +93,13 @@ public class Lesson {
     }
 
     /**
+     * Returns true if lesson has the given description
+     */
+    public boolean isDescription(String description) {
+        return this.description.equals(description);
+    }
+
+    /**
      * Returns true if both lessons have the same description
      */
     public boolean isSameLesson(Lesson otherLesson) {
