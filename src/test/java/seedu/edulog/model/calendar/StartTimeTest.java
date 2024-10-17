@@ -10,5 +10,5 @@ package seedu.edulog.model.calendar;
  *   <li>Test equality and inequality of {@code startTime} objects.</li>
  * </ul>
  */
-public class startTimeTest {
+public class StartTimeTest {
 }

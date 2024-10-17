@@ -7,31 +7,34 @@ import static seedu.edulog.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.edulog.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.edulog.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.edulog.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
-import static seedu.edulog.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
+import static seedu.edulog.testutil.TypicalNames.NAME_FIRST_STUDENT;
+import static seedu.edulog.testutil.TypicalNames.NAME_SECOND_STUDENT;
 import static seedu.edulog.testutil.TypicalStudents.getTypicalEduLog;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.edulog.commons.core.index.Index;
 import seedu.edulog.logic.Messages;
 import seedu.edulog.model.Model;
 import seedu.edulog.model.ModelManager;
 import seedu.edulog.model.UserPrefs;
 import seedu.edulog.model.calendar.EdulogCalendar;
+import seedu.edulog.model.student.Name;
 import seedu.edulog.model.student.Student;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteCommand}.
  */
-public class DeleteCommandTest {
+public class DeleteNameCommandTest {
 
     private Model model = new ModelManager(getTypicalEduLog(), new UserPrefs(), new EdulogCalendar());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validNameUnfilteredList_success() {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_STUDENT);
+        DeleteCommand deleteCommand = new DeleteNameCommand(NAME_FIRST_STUDENT);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS,
                 Messages.format(studentToDelete));
@@ -43,19 +46,19 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+    public void execute_invalidNameUnfilteredList_throwsCommandException() {
+        Name invalidName = new Name("Invalid");
+        DeleteCommand deleteCommand = new DeleteNameCommand(invalidName);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_NAME);
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_validNameFilteredList_success() {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_STUDENT);
+        DeleteCommand deleteCommand = new DeleteNameCommand(NAME_FIRST_STUDENT);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS,
                 Messages.format(studentToDelete));
@@ -68,28 +71,29 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    public void execute_invalidNameFilteredList_throwsCommandException() {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
+        List<Name> names = model.getEduLog().getStudentList().stream().map(Student::getName).toList();
 
-        Index outOfBoundIndex = INDEX_SECOND_STUDENT;
-        // ensures that outOfBoundIndex is still in bounds of edulog book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getEduLog().getStudentList().size());
+        Name unFilteredStudent = NAME_SECOND_STUDENT;
+        // ensures that unFilteredStudent is still in bounds of edulog book list
+        assertTrue(names.contains(unFilteredStudent));
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteCommand deleteCommand = new DeleteNameCommand(unFilteredStudent);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_NAME);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_STUDENT);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_STUDENT);
+        DeleteCommand deleteFirstCommand = new DeleteNameCommand(NAME_FIRST_STUDENT);
+        DeleteCommand deleteSecondCommand = new DeleteNameCommand(NAME_SECOND_STUDENT);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_STUDENT);
+        DeleteCommand deleteFirstCommandCopy = new DeleteNameCommand(NAME_FIRST_STUDENT);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -104,9 +108,9 @@ public class DeleteCommandTest {
 
     @Test
     public void toStringMethod() {
-        Index targetIndex = Index.fromOneBased(1);
-        DeleteCommand deleteCommand = new DeleteCommand(targetIndex);
-        String expected = DeleteCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
+        Name targetName = new Name("targetName");
+        DeleteNameCommand deleteCommand = new DeleteNameCommand(targetName);
+        String expected = DeleteNameCommand.class.getCanonicalName() + "{targetName=" + targetName + "}";
         assertEquals(expected, deleteCommand.toString());
     }
 

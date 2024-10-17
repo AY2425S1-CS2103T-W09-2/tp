@@ -8,6 +8,7 @@ import static seedu.edulog.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import org.junit.jupiter.api.Test;
 
 import seedu.edulog.logic.commands.DeleteCommand;
+import seedu.edulog.logic.commands.DeleteIndexCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -21,12 +22,14 @@ public class DeleteCommandParserTest {
     private DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_STUDENT));
+    public void parse_validArgs_returnsDeleteIndexCommand() {
+        assertParseSuccess(parser, "1", new DeleteIndexCommand(INDEX_FIRST_STUDENT));
     }
+
+    //TODO: test names
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 }

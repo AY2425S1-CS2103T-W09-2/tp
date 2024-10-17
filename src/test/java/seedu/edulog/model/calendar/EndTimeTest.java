@@ -10,5 +10,5 @@ package seedu.edulog.model.calendar;
  *   <li>Test equality and inequality of {@code endTime} objects (eg if equals() is overridden)</li>
  * </ul>
  */
-public class endTimeTest {
+public class EndTimeTest {
 }

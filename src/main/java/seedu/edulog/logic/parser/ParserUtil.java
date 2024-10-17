@@ -26,8 +26,29 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
+     * Regular Expression to check if the given string contains only numbers.
+     * {@code ^} represents beginning of line.
+     * {@code \d} represents numbers.
+     * {@code +} matches one or more characters.
+     * {@code $} represents end of line.
+     */
+    public static final String ONLY_NUMBER_REGEX = "^\\d+$";
+
+    /**
+     * Checks whether the given string represents a number. Leading and trailing whitespaces will be
+     * trimmed.
+     *
+     * @return {@code true} if the string represents a number, false otherwise.
+     */
+    public static boolean isNumeric(String number) {
+        String trimmedNumber = number.trim();
+        return trimmedNumber.matches(ONLY_NUMBER_REGEX);
+    }
+
+    /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {

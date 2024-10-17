@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.edulog.logic.commands.AddCommand;
 import seedu.edulog.logic.commands.ClearCommand;
 import seedu.edulog.logic.commands.DeleteCommand;
+import seedu.edulog.logic.commands.DeleteIndexCommand;
 import seedu.edulog.logic.commands.EditCommand;
 import seedu.edulog.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.edulog.logic.commands.ExitCommand;
@@ -50,7 +51,7 @@ public class EduLogParserTest {
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_STUDENT), command);
+        assertEquals(new DeleteIndexCommand(INDEX_FIRST_STUDENT), command);
     }
 
     @Test
