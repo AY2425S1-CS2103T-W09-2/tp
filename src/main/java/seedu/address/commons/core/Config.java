@@ -47,7 +47,7 @@ public class Config {
 
         Config otherConfig = (Config) other;
         return Objects.equals(logLevel, otherConfig.logLevel)
-                && Objects.equals(userPrefsFilePath, otherConfig.userPrefsFilePath);
+            && Objects.equals(userPrefsFilePath, otherConfig.userPrefsFilePath);
     }
 
     @Override
@@ -58,9 +58,9 @@ public class Config {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("logLevel", logLevel)
-                .add("userPrefsFilePath", userPrefsFilePath)
-                .toString();
+            .add("logLevel", logLevel)
+            .add("userPrefsFilePath", userPrefsFilePath)
+            .toString();
     }
 
 }

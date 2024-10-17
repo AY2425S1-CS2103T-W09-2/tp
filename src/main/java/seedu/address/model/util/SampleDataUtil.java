@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.calendar.EdulogCalendar;
-import seedu.address.model.calendar.Lesson;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -57,8 +57,8 @@ public class SampleDataUtil {
      */
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
+            .map(Tag::new)
+            .collect(Collectors.toSet());
     }
 
     private static Lesson[] getSampleLessons() {
@@ -77,7 +77,7 @@ public class SampleDataUtil {
      */
     public static EdulogCalendar getSampleEdulogCalendar() {
         EdulogCalendar sampleCalendar = new EdulogCalendar();
-        for (Lesson l: getSampleLessons()) {
+        for (Lesson l : getSampleLessons()) {
             sampleCalendar.addLesson(l);
         }
         return sampleCalendar;

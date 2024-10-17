@@ -67,7 +67,7 @@ public class AppParameters {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("configPath", configPath)
-                .toString();
+            .add("configPath", configPath)
+            .toString();
     }
 }

@@ -12,7 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.calendar.EdulogCalendar;
-import seedu.address.model.calendar.Lesson;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.student.Student;
 
 /**
@@ -30,16 +30,15 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, EdulogCalendar edulogCalendar) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyEdulogCalendar edulogCalendar) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        // Simple version - do without a persistent calendar first.
-        // TODO: Persistent storage for MVP release.
-        this.edulogCalendar = new EdulogCalendar();
+        this.edulogCalendar = new EdulogCalendar(edulogCalendar);
         filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
     }
 
@@ -82,6 +81,17 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    @Override
+    public Path getEdulogCalendarFilePath() {
+        return userPrefs.getEdulogCalendarFilePath();
+    }
+
+    @Override
+    public void setEdulogCalendarFilePath(Path edulogCalendarFilePath) {
+        requireNonNull(edulogCalendarFilePath);
+        userPrefs.setEdulogCalendarFilePath(edulogCalendarFilePath);
+    }
+
     //=========== AddressBook ================================================================================
 
     @Override
@@ -118,7 +128,17 @@ public class ModelManager implements Model {
         addressBook.setStudent(target, editedStudent);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Calendar with Lessons ================================================================================
+
+    @Override
+    public void setEdulogCalendar(ReadOnlyEdulogCalendar edulogCalendar) {
+        this.edulogCalendar.setEdulogCalendar(edulogCalendar);
+    }
+
+    @Override
+    public ReadOnlyEdulogCalendar getEdulogCalendar() {
+        return edulogCalendar;
+    }
 
     @Override
     public boolean hasLesson(Lesson lesson) {
@@ -180,8 +200,8 @@ public class ModelManager implements Model {
 
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
-                && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredStudents.equals(otherModelManager.filteredStudents);
+            && userPrefs.equals(otherModelManager.userPrefs)
+            && filteredStudents.equals(otherModelManager.filteredStudents);
     }
 
 }

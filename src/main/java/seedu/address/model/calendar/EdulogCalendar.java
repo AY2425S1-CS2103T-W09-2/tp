@@ -3,15 +3,35 @@ package seedu.address.model.calendar;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.ReadOnlyEdulogCalendar;
+import seedu.address.model.lesson.Lesson;
+
 /**
  * Calendar class
  */
-public class EdulogCalendar {
+public class EdulogCalendar implements ReadOnlyEdulogCalendar {
     public static final int MAX_IDENTICAL_TIMING = 2;
     private List<Lesson> lessons;
 
     public EdulogCalendar() {
         lessons = new ArrayList<>();
+    }
+
+
+    /**
+     * Creates an EdulogCalendar using Lessons in the {@code toBeCopied}
+     */
+    public EdulogCalendar(ReadOnlyEdulogCalendar toBeCopied) {
+        this.lessons = toBeCopied.getLessonList();
+    }
+
+    /**
+     * Modifies an existing EdulogCalendar using Lessons in the {@code toBeCopied}
+     */
+    public void setEdulogCalendar(ReadOnlyEdulogCalendar toBeCopied) {
+        this.lessons = toBeCopied.getLessonList();
     }
 
     /**
@@ -29,13 +49,13 @@ public class EdulogCalendar {
     }
 
     /**
-     * Find a lesson in the calendar based on its description
+     * Finds a lesson in the calendar based on its description
      */
     public Lesson findLesson(String description) {
         return lessons.stream()
-                      .filter(lesson -> lesson.isDescription(description))
-                      .findFirst()
-                      .orElse(null);
+            .filter(lesson -> lesson.isDescription(description))
+            .findFirst()
+            .orElse(null);
     }
 
     /**
@@ -54,5 +74,10 @@ public class EdulogCalendar {
      */
     public void removeLesson(Lesson lesson) {
         lessons.remove(lesson);
+    }
+
+    @Override
+    public ObservableList<Lesson> getLessonList() {
+        return FXCollections.observableArrayList(lessons);
     }
 }

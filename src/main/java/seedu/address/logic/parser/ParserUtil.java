@@ -11,7 +11,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.calendar.Lesson;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -28,6 +28,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -135,9 +136,9 @@ public class ParserUtil {
         requireNonNull(description);
 
         String trimmed = description.trim();
-        if (trimmed.isEmpty()) {
+        if (Lesson.checkEmptyDescription(description)) {
             throw new ParseException(Lesson.DESCRIPTION_EMPTY);
-        } else if (trimmed.length() > 100) {
+        } else if (Lesson.checkTooLongDescription(description)) {
             throw new ParseException(Lesson.DESCRIPTION_TOO_LONG);
         }
 
@@ -152,24 +153,10 @@ public class ParserUtil {
      */
     public static DayOfWeek parseDayOfWeek(String day) throws ParseException {
         requireNonNull(day);
-        switch (day.toLowerCase()) {
-        case "monday":
-            return DayOfWeek.MONDAY;
-        case "tuesday":
-            return DayOfWeek.TUESDAY;
-        case "wednesday":
-            return DayOfWeek.WEDNESDAY;
-        case "thursday":
-            return DayOfWeek.THURSDAY;
-        case "friday":
-            return DayOfWeek.FRIDAY;
-        case "saturday":
-            return DayOfWeek.SATURDAY;
-        case "sunday":
-            return DayOfWeek.SUNDAY;
-        default:
+        if (!Lesson.checkValidDayOfWeek(day)) {
             throw new ParseException(Lesson.INVALID_DAY_OF_WEEK);
         }
+        return Lesson.processDayOfWeek(day);
     }
 
     /**
@@ -181,19 +168,10 @@ public class ParserUtil {
     public static LocalTime parseLocalTime(String time) throws ParseException {
         String trimmed = time.trim();
 
-        // Does not fit the length of a 24-hour time
-        if (trimmed.length() != 4) {
+        if (!Lesson.checkValidLocalTime(trimmed)) {
             throw new ParseException(Lesson.NOT_24H_FORMAT);
         }
 
-        String hour = trimmed.substring(0, 2);
-        String minute = trimmed.substring(2);
-
-        // Hour is not between 00 and 23, or minute is not between 00 and 59
-        if (hour.compareTo("23") > 0 || minute.compareTo("59") > 0) {
-            throw new ParseException(Lesson.NOT_24H_FORMAT);
-        }
-
-        return LocalTime.of(Integer.parseInt(hour), Integer.parseInt(minute), 0);
+        return Lesson.processLocalTime(trimmed);
     }
 }

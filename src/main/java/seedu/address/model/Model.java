@@ -5,14 +5,16 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.calendar.Lesson;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.student.Student;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
 
     /**
@@ -35,6 +37,8 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    // Address Book related commands ===============================================================================
+
     /**
      * Returns the user prefs' address book file path.
      */
@@ -50,7 +54,9 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyAddressBook getAddressBook();
 
     /**
@@ -76,6 +82,28 @@ public interface Model {
      * The student identity of {@code editedStudent} must not be the same as another existing student in EduLog.
      */
     void setStudent(Student target, Student editedStudent);
+
+    // Edulog Calendar related commands ===============================================================================
+
+    /**
+     * Returns the user prefs' edulog calendar file path.
+     */
+    Path getEdulogCalendarFilePath();
+
+    /**
+     * Sets the user prefs' edulog calendar file path.
+     */
+    void setEdulogCalendarFilePath(Path edulogCalendarFilePath);
+
+    /**
+     * Replaces edulog calendar data with the data in {@code edulogCalendar}.
+     */
+    void setEdulogCalendar(ReadOnlyEdulogCalendar edulogCalendar);
+
+    /**
+     * Returns the edulog calendar
+     */
+    ReadOnlyEdulogCalendar getEdulogCalendar();
 
     /**
      * Returns true if a lesson with the same description as {@code lesson} exists in the calendar.
@@ -105,12 +133,14 @@ public interface Model {
     boolean checkTimeslot(Lesson lesson);
 
 
-
-    /** Returns an unmodifiable view of the filtered student list */
+    /**
+     * Returns an unmodifiable view of the filtered student list
+     */
     ObservableList<Student> getFilteredStudentList();
 
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);

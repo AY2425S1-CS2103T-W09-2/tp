@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.calendar.Lesson;
+import seedu.address.model.lesson.Lesson;
 
 /**
  * Deletes a student identified using it's displayed index from the address book.
@@ -16,9 +16,9 @@ public class DeleteLessonCommand extends Command {
     public static final String COMMAND_WORD = "deletec";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the student identified by the description used in the displayed calendar.\n"
-            + "Parameters: STRING\n"
-            + "Example: " + COMMAND_WORD + " Secondary 4 Chemistry Class";
+        + ": Deletes the student identified by the description used in the displayed calendar.\n"
+        + "Parameters: STRING\n"
+        + "Example: " + COMMAND_WORD + " Secondary 4 Chemistry Class";
 
     public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted Class: %1$s";
     public static final String MESSAGE_NONEXISTENT_LESSON = "This lesson does not exist in the calendar";
@@ -40,7 +40,7 @@ public class DeleteLessonCommand extends Command {
         Lesson lessonToDelete = model.findLesson(description);
         model.removeLesson(lessonToDelete);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, lessonToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, lessonToDelete), false, false, true);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class DeleteLessonCommand extends Command {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("toDelete", description)
-                .toString();
+            .add("toDelete", description)
+            .toString();
     }
 }

@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddLessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.calendar.Lesson;
+import seedu.address.model.lesson.Lesson;
 
 /**
  * Parses input arguments and creates a new AddLessonCommand object
@@ -22,20 +22,21 @@ public class AddLessonCommandParser implements Parser<AddLessonCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddLessonCommand
      * and returns an AddLessonCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddLessonCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(
-                        args, PREFIX_DESCRIPTION, PREFIX_START_DAY, PREFIX_START_TIME, PREFIX_END_TIME);
+            ArgumentTokenizer.tokenize(
+                args, PREFIX_DESCRIPTION, PREFIX_START_DAY, PREFIX_START_TIME, PREFIX_END_TIME);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_START_DAY, PREFIX_START_TIME, PREFIX_END_TIME)
-                || !argMultimap.getPreamble().isEmpty()) {
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLessonCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(
-                PREFIX_DESCRIPTION, PREFIX_START_DAY, PREFIX_START_TIME, PREFIX_END_TIME);
+            PREFIX_DESCRIPTION, PREFIX_START_DAY, PREFIX_START_TIME, PREFIX_END_TIME);
         String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         DayOfWeek day = ParserUtil.parseDayOfWeek(argMultimap.getValue(PREFIX_START_DAY).get());
         LocalTime startTime = ParserUtil.parseLocalTime(argMultimap.getValue(PREFIX_START_TIME).get());

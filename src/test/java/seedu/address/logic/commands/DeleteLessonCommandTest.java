@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.calendar.Lesson;
+import seedu.address.model.lesson.Lesson;
 
 public class DeleteLessonCommandTest {
 
@@ -26,7 +26,7 @@ public class DeleteLessonCommandTest {
         DeleteLessonCommand command = new DeleteLessonCommand("Math");
         CommandResult result = command.execute(model);
         assertEquals(result.getFeedbackToUser(),
-                String.format(DeleteLessonCommand.MESSAGE_DELETE_STUDENT_SUCCESS, lesson));
+            String.format(DeleteLessonCommand.MESSAGE_DELETE_STUDENT_SUCCESS, lesson));
     }
 
     @Test

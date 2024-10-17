@@ -28,7 +28,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         students = new UniqueStudentList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Students in the {@code toBeCopied}
@@ -99,8 +100,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("students", students)
-                .toString();
+            .add("students", students)
+            .toString();
     }
 
     @Override

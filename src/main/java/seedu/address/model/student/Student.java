@@ -71,7 +71,7 @@ public class Student {
         }
 
         return otherStudent != null
-                && otherStudent.getName().equals(getName());
+            && otherStudent.getName().equals(getName());
     }
 
     /**
@@ -91,10 +91,10 @@ public class Student {
 
         Student otherStudent = (Student) other;
         return name.equals(otherStudent.name)
-                && phone.equals(otherStudent.phone)
-                && email.equals(otherStudent.email)
-                && address.equals(otherStudent.address)
-                && tags.equals(otherStudent.tags);
+            && phone.equals(otherStudent.phone)
+            && email.equals(otherStudent.email)
+            && address.equals(otherStudent.address)
+            && tags.equals(otherStudent.tags);
     }
 
     @Override
@@ -106,12 +106,12 @@ public class Student {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", name)
-                .add("phone", phone)
-                .add("email", email)
-                .add("address", address)
-                .add("tags", tags)
-                .toString();
+            .add("name", name)
+            .add("phone", phone)
+            .add("email", email)
+            .add("address", address)
+            .add("tags", tags)
+            .toString();
     }
 
 }
