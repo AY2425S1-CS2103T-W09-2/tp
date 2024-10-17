@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="EduLog App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/Edulog.png" />
   </icons>
@@ -36,56 +36,56 @@
           </Menu>
         </MenuBar>
 
-              <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-                                <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100.0" minHeight="100.0" prefHeight="100.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100.0" minHeight="100.0" prefHeight="100.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-            <StackPane minHeight="40.0" prefHeight="40.0" styleClass="label-bright" stylesheets="@DarkTheme.css">
-               <children>
-                  <SplitPane dividerPositions="0.5" prefHeight="100.0">
-                    <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0">
-                           <children>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="9.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/students.png" />
-                                 </image>
-                              </ImageView>
-                              <Label layoutX="45.0" layoutY="9.0" styleClass="label-bright" text="Students" />
-                           </children>
-                        </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0">
-                           <children>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/calendar.png" />
-                                 </image>
-                              </ImageView>
-                              <Label layoutX="30.0" layoutY="9.0" styleClass="label-bright" text="Calendar" />
-                           </children>
-                        </AnchorPane>
-                    </items>
-                  </SplitPane>
-               </children>
-            </StackPane>
+        <StackPane minHeight="40.0" prefHeight="40.0" styleClass="label-bright" stylesheets="@DarkTheme.css">
+          <children>
+            <SplitPane dividerPositions="0.5" prefHeight="100.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0">
+                  <children>
+                    <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="9.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@../images/students.png" />
+                      </image>
+                    </ImageView>
+                    <Label layoutX="45.0" layoutY="9.0" styleClass="label-bright" text="Students" />
+                  </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0">
+                  <children>
+                    <ImageView fitHeight="25.0" fitWidth="25.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@../images/calendar.png" />
+                      </image>
+                    </ImageView>
+                    <Label layoutX="30.0" layoutY="9.0" styleClass="label-bright" text="Calendar" />
+                  </children>
+                </AnchorPane>
+              </items>
+            </SplitPane>
+          </children>
+        </StackPane>
 
         <VBox fx:id="studentList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
-               <SplitPane dividerPositions="0.5">
-                 <items>
-                <StackPane fx:id="studentListPanelPlaceholder" />
-                     <StackPane fx:id="calendarPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" />
-                 </items>
-               </SplitPane>
+          <SplitPane dividerPositions="0.5">
+            <items>
+              <StackPane fx:id="studentListPanelPlaceholder" />
+              <StackPane fx:id="calendarPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+            </items>
+          </SplitPane>
         </VBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />

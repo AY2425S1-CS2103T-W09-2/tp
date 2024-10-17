@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2425S1-CS2103T-W09-2/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2425S1-CS2103T-W09-2/tp/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -68,13 +68,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2425S1-CS2103T-W09-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2425S1-CS2103T-W09-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2425S1-CS2103T-W09-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -85,7 +85,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2425S1-CS2103T-W09-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -100,7 +100,7 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
+1. When `Logic` is called upon to execute a command, it is passed to an `EdulogParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to delete a student).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
@@ -111,23 +111,23 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `EdulogParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `EdulogParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2425S1-CS2103T-W09-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
+* stores the edulog data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
 * stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Student` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Edulog`, which `Student` references. This allows `Edulog` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -136,18 +136,18 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2425S1-CS2103T-W09-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both edulog data and user preference data in JSON format, and read them back into corresponding objects.
+* inherits from both `EdulogStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.address.commons` package.
+Classes used by multiple components are in the `seedu.edulog.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -159,37 +159,37 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedEdulog`. It extends `Edulog` with an undo/redo history, stored internally as an `eduLogStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedEdulog#commit()` — Saves the current edulog state in its history.
+* `VersionedEdulog#undo()` — Restores the previous edulog state from its history.
+* `VersionedEdulog#redo()` — Restores a previously undone edulog state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitEdulog()`, `Model#undoEdulog()` and `Model#redoEdulog()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedEdulog` will be initialized with the initial edulog state, and the `currentStatePointer` pointing to that single edulog state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th student in the edulog. The `delete` command calls `Model#commitEdulog()`, causing the modified state of the edulog after the `delete 5` command executes to be saved in the `eduLogStateList`, and the `currentStatePointer` is shifted to the newly inserted edulog state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitEdulog()`, causing another modified edulog state to be saved into the `eduLogStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitEdulog()`, so the edulog state will not be saved into the `eduLogStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoEdulog()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous edulog state, and restores the edulog to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Edulog state, then there are no previous Edulog states to restore. The `undo` command uses `Model#canUndoEdulog()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -206,17 +206,17 @@ Similarly, how an undo operation goes through the `Model` component is shown bel
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoEdulog()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the edulog to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `eduLogStateList.size() - 1`, pointing to the latest edulog state, then there are no undone Edulog states to restore. The `redo` command uses `Model#canRedoEdulog()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the edulog, such as `list`, will usually not call `Model#commitEdulog()`, `Model#undoEdulog()` or `Model#redoEdulog()`. Thus, the `eduLogStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitEdulog()`. Since the `currentStatePointer` is not pointing at the end of the `eduLogStateList`, all edulog states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -228,7 +228,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire edulog.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -371,8 +371,8 @@ Use case ends.
 
 ## UC3: Add student
 
-**System**: EduLog  
-**Actor**: Teacher  
+**System**: EduLog
+**Actor**: Teacher 
 **Postcondition**: A student, with at least a name, is successfully enrolled in at least one class
 
 **MSS:**
@@ -386,28 +386,28 @@ Use case ends.
 
 ### **Extension:**
 
-- **2a. Teacher wants to abort the ‘add student’ process**  
+- **2a. Teacher wants to abort the ‘add student’ process**
   Teacher can clear fields and exit the procedure.
 
-- **4a. Student with the same name already exists**  
+- **4a. Student with the same name already exists**
   System alerts the teacher that the student exists and displays their details.
 
-- **4b. Invalid student details**  
+- **4b. Invalid student details**
   System alerts the teacher and prompts them to correct the invalid information.
 
-- **4c. Subject does not exist**  
+- **4c. Subject does not exist**
   System prompts the teacher to first create the tag using <u>UC7: Create a Subject</u>.
 
-- **4d. Class does not exist**  
+- **4d. Class does not exist**
   System prompts the teacher to first create the class using <u>UC1: Add a Class</u>.
 
-- **4e. Tag does not exist**  
+- **4e. Tag does not exist**
   System prompts the teacher to first create the tag using <u>UC5: Create a Tag</u>.
 
 ## UC4: Edit student
 
-**System**: EduLog  
-**Actor**: Teacher  
+**System**: EduLog
+**Actor**: Teacher 
 
 **MSS:**
 1. Teacher initiates the process to edit an existing student in EduLog.
@@ -418,27 +418,27 @@ Use case ends.
 Use case ends.
 
 ### **Extension:**
-- **2a. Teacher wants to abort the ‘edit student’ process:**  
+- **2a. Teacher wants to abort the ‘edit student’ process:**
   Teacher can clear fields and exit the procedure.
 
-- **4a. Student with new name already exists**  
+- **4a. Student with new name already exists**
   System alerts the teacher that the student exists and displays their details.
 
-- **4b. Invalid student details (see features):**  
+- **4b. Invalid student details (see features):**
   System alerts the teacher and prompts them to correct the invalid information.
 
-- **4c. Subject does not exist**  
+- **4c. Subject does not exist**
   System prompts the teacher to first create the tag using <u>UC7: Create a Subject</u>.
 
-- **4d. Class does not exist**  
+- **4d. Class does not exist**
   System prompts the teacher to first create the class using <u>UC1: Add a Class</u>.
 
-- **4e. Tag does not exist**  
+- **4e. Tag does not exist**
   System prompts the teacher to first create the tag using <u>UC5: Create a Tag</u>.
 
 ## UC5: Create Tag
 
-**System**: EduLog  
+**System**: EduLog
 **Actor**: Teacher
 
 **MSS:**
@@ -450,19 +450,19 @@ Use case ends.
 Use case ends.
 
 ### **Extension:**
-- **2a. Teacher wants to abort the ‘create tag’ process:**  
+- **2a. Teacher wants to abort the ‘create tag’ process:**
   Teacher clears the fields and exits the procedure without saving any data.
 
-- **3a. Tag with the same name already exists**  
+- **3a. Tag with the same name already exists**
   System alerts the teacher that the tag exists and no new tag is created.
 
-- **3b. Invalid tag details:**  
-  System alerts the teacher if any of the entered details are invalid.  
+- **3b. Invalid tag details:**
+  System alerts the teacher if any of the entered details are invalid.
   System prompts the teacher to correct the information before proceeding.
 
 ## UC6: Edit tag
 
-**System**: EduLog  
+**System**: EduLog
 **Actor**: Teacher
 
 **MSS:**
@@ -474,20 +474,20 @@ Use case ends.
 Use case ends.
 
 ### **Extension:**
-- **2a. Teacher wants to abort the ‘edit tag’ process:**  
+- **2a. Teacher wants to abort the ‘edit tag’ process:**
   Teacher clears the fields and exits the procedure without saving any data.
 
-- **3a. Tag with new name already exists**  
+- **3a. Tag with new name already exists**
   System alerts the teacher that the tag exists.  
   System requests to add another name.
 
-- **3b. Invalid tag details (see features):**  
+- **3b. Invalid tag details (see features):**
   System alerts the teacher if any of the entered details are invalid.  
   System prompts the teacher to correct the information before proceeding.
 
 ## UC7: Delete tag
 
-**System**: EduLog  
+**System**: EduLog
 **Actor**: Teacher
 
 **MSS:**
@@ -499,15 +499,15 @@ Use case ends.
 
 ### **Extension:**
 
-- **1a. Tag does not exist**  
+- **1a. Tag does not exist**
   System alerts the teacher that the tag does not exist and cannot be deleted.
 
-- **2a. Teacher wants to abort the ‘delete tag’ process:**  
+- **2a. Teacher wants to abort the ‘delete tag’ process:**
   Teacher cancels the operation and exits the procedure without deleting the tag.
 
 ## UC8: View students (Nikhil)
 
-**System:** EduLog  
+**System:** EduLog
 **Actor:** Teacher  
 **Precondition:** The teacher is logged into the app.
 
@@ -531,17 +531,17 @@ Use case resumes from Step 2.
 
 ## UC9: Remove student (Nikhil)
 
-**System:** EduLog  
-**Actor:** Teacher  
-**Precondition:** The teacher is logged into the app, the student is present in the list of students enrolled under the teacher.  
+**System:** EduLog
+**Actor:** Teacher
+**Precondition:** The teacher is logged into the app, the student is present in the list of students enrolled under the teacher.
 **Postcondition:** The student is removed from the teacher’s list of students.
 
 **MSS:**
 
-1. Teacher views the students enrolled under him/her through U1. View Students  
-2. Teacher selects a student to delete.  
-3. Teacher requests to delete the student.  
-4. System confirms that the student has been removed.  
+1. Teacher views the students enrolled under him/her through U1. View Students
+2. Teacher selects a student to delete.
+3. Teacher requests to delete the student.
+4. System confirms that the student has been removed.
    Teacher repeats steps 3-5 for any remaining students they wish to remove.
    Use case ends.
 
