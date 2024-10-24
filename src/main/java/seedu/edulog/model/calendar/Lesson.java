@@ -16,9 +16,6 @@ import seedu.edulog.commons.util.ToStringBuilder;
  * Lesson class, representing a weekly recurring time slot for a lesson.
  */
 public class Lesson {
-    // Denotes the maximum characters that a Lesson should have.
-    public static final Integer MAX_CHARACTER_LIMIT = 100;
-
 
     // Denotes the valid days of the week, spelt in full.
     public static final ArrayList<String> DAYS_OF_THE_WEEK = new ArrayList<String>(
@@ -31,12 +28,6 @@ public class Lesson {
             "Day of the week must be spelt as "
             + "'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', or 'Sunday'"
             + "only (non case-sensitive).";
-
-    public static final String DESCRIPTION_EMPTY =
-            "Lesson description cannot be empty.";
-
-    public static final String DESCRIPTION_TOO_LONG =
-            "Lesson description should be at most 100 characters long (whitespace-inclusive).";
 
     public static final String NOT_24H_FORMAT =
             "Times provided must be in 24-hour time format. Examples: 0000, 1027, 1830, 2215, 2359.";
@@ -173,7 +164,9 @@ public class Lesson {
     }
 
     /**
-     * Returns true if both lessons have the same description
+     * Returns true if both lessons have the same description. A lesson's primary identity is its description and is
+     * exclusively checked with each other. Two lessons with the same description will be marked as the same lesson
+     * even if their secondary characteristics (like day of the week) vary.
      */
     public boolean isSameLesson(Lesson otherLesson) {
         return otherLesson != null
@@ -228,7 +221,7 @@ public class Lesson {
 
     /**
      * Returns true if both lessons have the same identity and data fields.
-     * This defines a stronger notion of equality between two lessons.
+     * This defines a stronger notion of equality between two lessons, where all fields of the Lesson must match.
      */
     @Override
     public boolean equals(Object other) {
