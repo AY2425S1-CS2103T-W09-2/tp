@@ -284,34 +284,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: Essential (must have), Novel (nice to have), Typical (unlikely to have)
 
-| Priority | As a                   | I want to | So that I can |
-| :---- |:-----------------------| :---- | :---- |
-| Essential | Teacher                | track class schedules | schedule students |
-| Essential | Teacher                | manage student address | I will be able to mail the student things |
-| Essential | Teacher                | manage student phone number | I know who to contact and how to contact |
-| Essential | Teacher                | manage student email | I am able to send email attachments |
-| Essential | Teacher                | tag students based on how much help they need | give each student the appropriate amount of help |
-| Typical | Teacher                | track how much students have paid | I know whether to collect the payment |
-| Typical | Teacher                | track when students need to pay | I know whether to collect the payment |
-| Typical | Teacher                | know what my student is scoring | adjust my teaching procedures |
-| Typical | Teacher                | rank my students | adjust my teaching procedures |
-| Typical | Teacher                | reminder for class schedule | I never miss or forget a class |
-| Typical | Teacher                | allow assignment names to be tagged to classes |  |
-| Typical | Teacher                | allow assignments to be tagged with deadlines | they are aware of upcoming tasks , and I know what i have assigned |
-| Typical | Teacher                | allow tracking of deadlines in the class schedule | they are aware of upcoming tasks , and I know what i have assigned |
-| Typical | Teacher                | be alerted if a student is not around for too long | monitor student engagement |
-| Typical | Teacher                | track course progress | know when to review material |
-| Typical | Teacher                | set reminders for student homework deadlines | ensure students submit work on time. |
-| Typical | Teacher                | manage feedback from students | adjust my teaching approach based on student input. |
-| Novel | Teacher                | provide automated lesson plans | save time creating good lesson plans |
-| Novel | Teacher                | conduct online assessments | monitor student understanding remotely. |
-| Novel | Teacher                | have ideas for gifts | buy gifts for my students. |
-| Novel | Tuition Business Owner | manage staff schedules | classes are appropriately covered |
-| Novel | Tuition Business Owner | monitor student enrollments | adjust course offerings accordingly. |
-| Novel | Tuition Business Owner | track expenses | manage budget effectively |
-| Novel | Tuition Business Owner | track revenue | manage budget effectively |
-| Novel | Tuition Business Owner | view monthly financial reports | I have a clear understanding of the business's financial health. |
-| Novel | Tuition Business Owner | integrate with a payroll system | manage staff salaries more efficiently. |
+| Priority | As a    | I want to                                                    | So that I can |
+| :---- |:--------|:-------------------------------------------------------------| :---- |
+| Essential | Teacher | track class schedules                                        | schedule students |
+| Essential | Teacher | manage student address                                       | I will be able to mail the student things |
+| Essential | Teacher | manage student phone number                                  | I know who to contact and how to contact |
+| Essential | Teacher | manage student email                                         | I am able to send email attachments |
+| Essential | Teacher | tag students based on how much help they need                | give each student the appropriate amount of help |
+| Essential | Teacher | track class schedules                                        | schedule students |
+| Essential | Teacher | mark all students who has paid                               | so that I can quickly mark all my students who has paid|
+| Essential | Teacher | unmark all students, so that they are listed as has not paid | so that I can quickly mark students as unpaid, when the new month comes in |
+| Essential | Teacher | manage how much each student pays in tuition fees            | so that I can remeber how much to bill my student every month |
 
 *{More to be added}*
 
