@@ -37,7 +37,6 @@
     },
     {
       "src": "DeveloperGuide.md",
-      "title": "Developer Guide",
       "headings": {
         "edulog-developer-guide": "EduLog Developer Guide",
         "acknowledgements": "Acknowledgements",
@@ -48,10 +47,9 @@
         "logic-component": "Logic component",
         "model-component": "Model component",
         "storage-component": "Storage component",
-        "common-lessones": "Common lessones",
+        "common-classes": "Common classes",
         "implementation": "Implementation",
         "proposed-undo-redo-feature": "[Proposed] Undo/redo feature",
-        "proposed-data-archiving": "[Proposed] Data archiving",
         "documentation-logging-testing-configuration-dev-ops": "Documentation, logging, testing, configuration, dev-ops",
         "appendix-requirements": "Appendix: Requirements",
         "product-scope": "Product scope",
@@ -121,7 +119,6 @@
     },
     {
       "src": "Testing.md",
-      "title": "Testing guide",
       "headings": {
         "testing-guide": "Testing guide",
         "running-tests": "Running tests",
@@ -133,16 +130,16 @@
       "src": "UserGuide.md",
       "title": "User Guide",
       "headings": {
-        "quick-start": " Quick start ",
-        "features": " Features ",
+        "quick-start": "Quick Start",
+        "features": "Features",
         "1-general-commands": "1. General commands",
         "2-student-commands": "2. Student Commands",
         "3-calendar-commands": "3. Calendar Commands",
         "4-gift-command": "4. Gift Command",
         "5-revenue-commands": "5. Revenue Commands",
         "6-data-files": "6. Data Files",
-        "faq": " FAQ ",
-        "known-issues": " Known Issues ",
+        "faq": "FAQ",
+        "known-issues": "Known Issues",
         "command-summary": "Command Summary"
       },
       "headingKeywords": {}
